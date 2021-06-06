@@ -91,10 +91,10 @@ extern unsigned int app_stack_canary;
 #define IS_UX_ALLOWED (ux.params.len != BOLOS_UX_IGNORE && ux.params.len != BOLOS_UX_CONTINUE)
 #endif
 
-#define MEMMOVE os_memmove
-#define MEMSET os_memset
-#define MEMCPY os_memcpy
-#define MEMCMP os_memcmp
+#define MEMMOVE memmove
+#define MEMSET memset
+#define MEMCPY memcpy
+#define MEMCMP memcmp
 #define MEMCPY_NV nvm_write
 #define MEMZERO explicit_bzero
 
