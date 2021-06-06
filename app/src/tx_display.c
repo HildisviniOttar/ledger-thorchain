@@ -213,6 +213,7 @@ __Z_INLINE uint8_t get_subitem_count(root_item_e root_item) {
 
     // Correct for expert_mode (show/hide some root items)
     switch (root_item) {
+        case root_item_fee:
         case root_item_account_number:
         case root_item_chain_id:
         case root_item_sequence:
