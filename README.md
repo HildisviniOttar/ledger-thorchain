@@ -43,14 +43,14 @@ Please:
     docker pull zondax/builder-zemu:latest
     ```
 
-- Setup Ledger development environment using official docs:
+- (Optional: Manual builds) - Setup Ledger development environment using official docs:
     [https://ledger.readthedocs.io/en/latest/userspace/setup.html](https://ledger.readthedocs.io/en/latest/userspace/setup.html)
 
 
 - You will need python 3 and then run
     - `make deps`
 
-- This project requires Ledger firmware 2.0
+- This project requires **Ledger firmware 2.0**
     - The current repository keeps track of Ledger's SDK in `deps/` but it is possible to override it by changing the git submodule.
 
 *Warning*: Some IDEs may not use the same python interpreter or virtual enviroment as the one you used when running `pip`.
@@ -72,7 +72,8 @@ If you see conan is not found, check that you installed the package in the same 
     make load
     ```
 
-- Building with zondax docker images
+- Building with zondax docker images.
+    The Makefile uses the zondas build system when `BOLOS_SDK` is undefined. Inspect `Makefile` for details.
     ```bash
     export BOLOS_SDK=
     make
@@ -171,8 +172,8 @@ There are a few things to take into account when enabling Ledger App debugging:
 
     Enjoy :)
 
-6. For VSCode, open `.vscode/launch.json` and change `gdbpath` to be correct for your `arm-none-eabi-gdb`
-    Whilst your `make zemu_debug` is running, press VSCode attach to gdbserver. Enjoy :)
+6. For VSCode, open `.vscode/launch.json` and change `gdbpath` to be correct for your `arm-none-eabi-gdb`.
+    Whilst your `make zemu_debug` is running (waiting), press VSCode attach to gdbserver. Enjoy :)
 
 ## Using a real device
 
@@ -187,9 +188,7 @@ There are a few things to take into account when enabling Ledger App debugging:
    There are a few additional steps that increase reproducibility and simplify development:
 
 **1 - Ensure your device works in your OS**
-- In Linux hosts it might be necessary to adjust udev rules, etc.
-
-  Refer to Ledger documentation: https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues
+- In Linux hosts it might be necessary to adjust udev rules, etc. See the Ledger manual dev environment setup (above) or https://support.ledger.com/hc/en-us/articles/115005165269-Fix-connection-issues
 
 **2 - Set a test mnemonic**
 
