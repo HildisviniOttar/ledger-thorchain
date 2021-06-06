@@ -147,7 +147,7 @@ namespace {
 
         uint8_t numItems;
         tx_display_numItems(&numItems);
-        EXPECT_EQ(7, numItems) << "Wrong number of items";
+        EXPECT_EQ(6, numItems) << "Wrong number of items";
     }
 
 }

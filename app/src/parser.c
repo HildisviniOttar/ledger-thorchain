@@ -15,6 +15,7 @@
 ********************************************************************************/
 
 #include <stdio.h>
+#include <ctype.h>
 #include <zxmacros.h>
 #include <tx_validate.h>
 #include <zxtypes.h>
@@ -94,15 +95,23 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
         return parser_unexpected_field;
 
     // Point at the correct JSMN_STRING. There are two variations:
-    // {"amount": "2000","asset": "THOR.RUNE"} where we want "2000" (+2)
-    // {"amount":[],"gas":"1000"} where key we're interested in "1000" (+4)
+    // {"amount": "2000","asset": "THOR.RUNE"} where we want "2000" (+2) and "THOR.RUNE" (+4)
+    // {"amount":[],"gas":"1000"} where key we're interested in "1000" (+4) (fee always "RUNE")
     amountToken += 2;
-    if (parser_tx_obj.json.tokens[amountToken].type == JSMN_ARRAY)
+    bool amountIsFee = false;
+    if (parser_tx_obj.json.tokens[amountToken].type == JSMN_ARRAY) {
         amountToken += 2;
+        amountIsFee = true;
+    }
 
     // Should now be a String, e.g. "2000" ready to format
     if (parser_tx_obj.json.tokens[amountToken].type != JSMN_STRING)
         return parser_unexpected_field;
+
+    // For non-fees, we also parse "asset", e.g. "THOR.RUNE" or "BTC/BTC" synths.
+    if (amountIsFee == false && parser_tx_obj.json.tokens[amountToken+2].type != JSMN_STRING) {
+        return parser_unexpected_field;
+    }
 
     char bufferUI[160];
     MEMZERO(outVal, outValLen);
@@ -113,19 +122,33 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
         return parser_unexpected_buffer_end;
     }
 
+    const char *assetNamePtr;
+    if (amountIsFee == false) {
+        if (parser_tx_obj.json.tokens[amountToken+2].start < 0)
+            return parser_unexpected_buffer_end;
+        assetNamePtr = parser_tx_obj.tx + parser_tx_obj.json.tokens[amountToken+2].start; // "THOR.RUNE" etc.
+    } else {
+        assetNamePtr = COIN_DEFAULT_DENOM_REPR;  //"RUNE" for fees
+    }
+
     const int16_t amountLen = parser_tx_obj.json.tokens[amountToken].end -
                               parser_tx_obj.json.tokens[amountToken].start;
 
-    if (amountLen <= 0) {
+    const int16_t assetNameLen = (amountIsFee == false) ? 
+                                parser_tx_obj.json.tokens[amountToken+2].end -
+                                parser_tx_obj.json.tokens[amountToken+2].start 
+                                : sizeof(COIN_DEFAULT_DENOM_REPR);
+
+    if (amountLen <= 0 || assetNameLen <= 0) {
         return parser_unexpected_buffer_end;
     }
 
-    // "<amountFloat> RUNE"
-    if (sizeof(bufferUI) < (size_t) (amountLen + sizeof(COIN_DEFAULT_DENOM_REPR)) ) {
+    // Worst case "<amount.float> RUNE"
+    if (sizeof(bufferUI) < (size_t) (amountLen + 2 + assetNameLen) ) {
         return parser_unexpected_buffer_end;
     }
 
-    if (tx_is_expert_mode() == 0) {
+    if (tx_is_expert_mode() == 0 || amountIsFee == true) {
         // Then we convert denomination
         char tmp[50];
         if (amountLen < 0 || ((uint16_t) amountLen) >= sizeof(tmp)) {
@@ -146,12 +169,21 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
 
         const uint16_t formatted_len =strlen(bufferUI);
         bufferUI[formatted_len] = ' ';
-        MEMCPY(bufferUI + 1 + formatted_len, COIN_DEFAULT_DENOM_REPR, strlen(COIN_DEFAULT_DENOM_REPR));
+        MEMCPY(bufferUI + 1 + formatted_len, assetNamePtr, assetNameLen);
     } else {
-        // Display in tor
+        // Display in sats
         MEMCPY(bufferUI, amountPtr, amountLen);
         bufferUI[amountLen] = ' ';
-        MEMCPY(bufferUI + 1 + amountLen, COIN_DEFAULT_DENOM_BASE, strlen(COIN_DEFAULT_DENOM_BASE));
+        MEMCPY(bufferUI + 1 + amountLen, assetNamePtr, assetNameLen);
+    }
+
+    //Capitalise display buffer
+    char *s = bufferUI;
+    size_t count = 0;
+    while (*s && count < sizeof(bufferUI)) {
+        *s = toupper((unsigned char) *s);
+        s++;
+        count++;
     }
 
     pageString(outVal, outValLen, bufferUI, pageIdx, pageCount);
