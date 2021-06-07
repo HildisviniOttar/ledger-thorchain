@@ -21,6 +21,8 @@ Please:
 
 *Once the app is approved by Ledger, it will be available in their app store (Ledger Live).
 
+User instructions in [docs/INSTRUCTIONS.md](docs/INSTRUCTIONS.md)
+
 # Development
 
 ## Preconditions
