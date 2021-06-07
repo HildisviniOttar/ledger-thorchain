@@ -57,9 +57,6 @@ parser_error_t parser_getNumItems(const parser_context_t *ctx, uint8_t *num_item
 // This should always query for the direct JSMN_STRING type
 // and THORChain always sends in long format, eg "100000000" for "1.0 RUNE"
 __Z_INLINE bool_t parser_isAmount(char *key) {
-    if (strcmp(key, "fee") == 0)
-        return bool_true;
-
     if (strcmp(key, "msgs/value/coins") == 0)
         return bool_true;
 
@@ -94,22 +91,16 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
     if (parser_tx_obj.json.tokens[amountToken].type != JSMN_OBJECT)
         return parser_unexpected_field;
 
-    // Point at the correct JSMN_STRING. There are two variations:
+    // Point at the correct JSMN_STRING.
     // {"amount": "2000","asset": "THOR.RUNE"} where we want "2000" (+2) and "THOR.RUNE" (+4)
-    // {"amount":[],"gas":"1000"} where key we're interested in "1000" (+4) (fee always "RUNE")
     amountToken += 2;
-    bool amountIsFee = false;
-    if (parser_tx_obj.json.tokens[amountToken].type == JSMN_ARRAY) {
-        amountToken += 2;
-        amountIsFee = true;
-    }
 
     // Should now be a String, e.g. "2000" ready to format
     if (parser_tx_obj.json.tokens[amountToken].type != JSMN_STRING)
         return parser_unexpected_field;
 
-    // For non-fees, we also parse "asset", e.g. "THOR.RUNE" or "BTC/BTC" synths.
-    if (amountIsFee == false && parser_tx_obj.json.tokens[amountToken+2].type != JSMN_STRING) {
+    // We also parse "asset", e.g. "THOR.RUNE" or "BTC/BTC" synths.
+    if (parser_tx_obj.json.tokens[amountToken+2].type != JSMN_STRING) {
         return parser_unexpected_field;
     }
 
@@ -121,23 +112,17 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
     if (parser_tx_obj.json.tokens[amountToken].start < 0) {
         return parser_unexpected_buffer_end;
     }
+    if (parser_tx_obj.json.tokens[amountToken+2].start < 0)
+        return parser_unexpected_buffer_end;
 
-    const char *assetNamePtr;
-    if (amountIsFee == false) {
-        if (parser_tx_obj.json.tokens[amountToken+2].start < 0)
-            return parser_unexpected_buffer_end;
-        assetNamePtr = parser_tx_obj.tx + parser_tx_obj.json.tokens[amountToken+2].start; // "THOR.RUNE" etc.
-    } else {
-        assetNamePtr = COIN_DEFAULT_DENOM_REPR;  //"RUNE" for fees
-    }
+    const char *assetNamePtr = parser_tx_obj.tx + parser_tx_obj.json.tokens[amountToken+2].start; // "THOR.RUNE" etc.
+
 
     const int16_t amountLen = parser_tx_obj.json.tokens[amountToken].end -
                               parser_tx_obj.json.tokens[amountToken].start;
 
-    const int16_t assetNameLen = (amountIsFee == false) ? 
-                                parser_tx_obj.json.tokens[amountToken+2].end -
-                                parser_tx_obj.json.tokens[amountToken+2].start 
-                                : sizeof(COIN_DEFAULT_DENOM_REPR);
+    const int16_t assetNameLen = parser_tx_obj.json.tokens[amountToken+2].end -
+                                parser_tx_obj.json.tokens[amountToken+2].start;
 
     if (amountLen <= 0 || assetNameLen <= 0) {
         return parser_unexpected_buffer_end;
@@ -148,7 +133,7 @@ __Z_INLINE parser_error_t parser_formatAmount(uint16_t amountToken,
         return parser_unexpected_buffer_end;
     }
 
-    if (tx_is_expert_mode() == 0 || amountIsFee == true) {
+    if (tx_is_expert_mode() == 0) {
         // Then we convert denomination
         char tmp[50];
         if (amountLen < 0 || ((uint16_t) amountLen) >= sizeof(tmp)) {

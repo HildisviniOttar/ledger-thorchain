@@ -49,7 +49,7 @@ __Z_INLINE uint8_t get_root_max_level(root_item_e i) {
         case root_item_chain_id:
             return 0;
         case root_item_fee:
-            return 0;
+            return 1;
         case root_item_memo:
             return 0;
         case root_item_msgs:
@@ -325,7 +325,8 @@ static const key_subst_t key_substitutions[] = {
         // Common
         {"account_number",                    "Account"},
         {"chain_id",                          "Chain ID"},
-        {"fee",                               "Fee"},
+        {"fee/gas",                           "Gas"},
+        {"fee/amount",                        "Fee"},
         {"sequence",                          "Sequence"},
         {"memo",                              "Memo"},
         {"msgs/type",                         "Type"},
