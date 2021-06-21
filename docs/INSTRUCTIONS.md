@@ -12,7 +12,7 @@ The THORChain app runs on the Ledger [Nano S](https://shop.ledger.com/products/l
 ### Technical capabilities
 Transaction messages supported are:
 - **MsgSend** -- sending assets (e.g. RUNE) to another address
-- **MsgDeposit** -- For interacting with the network, for example to `BOND` a THORChain validator node.
+- **MsgDeposit** -- For interacting with the network, for example to `BOND` a THORChain validator node and perform `Swap` transactions.  
 
 The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
@@ -35,10 +35,48 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 ### Usage Instructions
 
-* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)  **implementation coming soon*
-* [https://app.thorswap.finance/](https://app.thorswap.finance/)  **implementation coming soon* 
+* [https://app.thorswap.finance/](https://app.thorswap.finance/) **Available**
+* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)  *implementation coming soon*
 
-^ *Awaiting implementation by client apps*
+### THORSwap Support
+
+#### Connection
+
+- Plug in your Ledger device, unlock it and open the THORChain app.  
+- On your computer, using a Chromium based browser (e.g. Brave or Chrome) load [https://app.thorswap.finance/](https://app.thorswap.finance/) and click **Connect**  
+![Connect Button](img/THORSwap_Connect1.png)  
+- Connect Chrome to Ledger:  
+![Connect Ledger](img/THORSwap_Connect4.png)  
+- Follow the prompts:  
+![Prompt1](img/THORSwap_Connect2.png)  
+![Prompt2](img/THORSwap_Connect3.png)  
+**Troubleshooting** If you are having trouble connecting, try quitting other browsers or app sessions that may also be connected to the Ledger.  
+
+#### Check Balance
+
+Checking balance can be accomplished via the **Wallet** button:  
+![Wallet Button](img/THORSwap_Balance1.png)  
+![Wallet Balance](img/THORSwap_Balance2.png)  
+
+#### Receive Funds
+
+You can copy your address using the buttons in the Balance area, including displaying QR code.  
+For maximum safety, you should also verify your receive address on your ledger device using the **Verify Address** button as pictured:  
+![Verify Address](img/THORSwap_VerifyAddress.png)  
+
+#### Sending
+
+Tap the send button on your balance to display the send sheet:  
+![Send Button](img/THORSwap_Send2.png)  
+![Send](img/THORSwap_Send.png)  
+Enter the amount (or use the slider), and recipient address which should begin with `thor`. The `memo` field is optional.  
+After pressing **SEND**, follow the prompts on your Ledger device to **verify** the transaction by pressing **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
+
+#### Swapping
+
+Choose **Swap** from the main menu. The Ledger address will appear as an option to swap *to/from*.  
+![Swap](img/THORSwap_Swap.png)  
+After pressing **SWAP**, follow the prompts on your Ledger device. Review the transaction including `memo` which should match your desired *SWAP* transaction details, then press **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
 
 ### Support
 
