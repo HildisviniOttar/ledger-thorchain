@@ -26,8 +26,7 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 ### Installation
 
-- Open the **Settings** > **Experimental Features** in Ledger Live and enable **Developer Mode**
-- Open the **Manager** tab
+- Open the **Manager** tab in Ledger Live
 - Connect and unlock your Ledger device
 - If asked, Allow Ledger manager on device
 - Search for **THORChain** in the App catalog
@@ -35,8 +34,8 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 ### Usage Instructions
 
-* [https://app.thorswap.finance/](https://app.thorswap.finance/) **Available**
-* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)  *implementation coming soon*
+* [https://app.thorswap.finance](https://app.thorswap.finance)  **Available Now**
+* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)   *Implementation coming soon!*
 
 ### THORSwap Support
 
