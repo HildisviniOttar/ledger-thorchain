@@ -34,10 +34,10 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 ### Usage Instructions
 
-* [https://app.thorswap.finance](https://app.thorswap.finance)  **Available Now**
-* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)   *Implementation coming soon!*
+* [https://app.thorswap.finance](https://app.thorswap.finance)  
+* [ASGARDEX Desktop](https://github.com/thorchain/asgardex-electron/releases)  
 
-### THORSwap Support
+## THORSwap Support
 
 #### Connection
 
@@ -76,6 +76,41 @@ After pressing **SEND**, follow the prompts on your Ledger device to **verify** 
 Choose **Swap** from the main menu. The Ledger address will appear as an option to swap *to/from*.  
 ![Swap](img/THORSwap_Swap.png)  
 After pressing **SWAP**, follow the prompts on your Ledger device. Review the transaction including `memo` which should match your desired *SWAP* transaction details, then press **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
+
+## ASGARDEX Desktop Support
+
+#### Connection  
+
+- Plug in your Ledger device, unlock it and open the THORChain app.  
+- On your computer, open the ASGARDEX app.  
+- If you haven't already setup a software wallet on first run, follow the prompts to do that first.  
+- Click on **WALLET** then **SETTINGS** and **ADD LEDGER**  
+![Add Ledger](img/ASGARDEX_Add_Ledger.png)  
+- If you see an error such as below, your Ledger device may be locked or not have the THORChain app open. Troubleshoot and try again.  
+![Ledger Error](img/ASGARDEX_Add_Address_Error.png)  
+- After successfully adding the Ledger, it will appear below the software wallet account.  
+![Ledger Added](img/ASGARDEX_Address_Added.png)  
+
+#### Check Balance  
+
+Checking balance can be accomplished via the **WALLET** under the **ASSETS** tab:  
+![Wallet Assets](img/ASGARDEX_Balance.png)  
+ 
+
+#### Receive Funds  
+
+You can copy your address using the buttons in any part of the app that displays your Address, including the QR code button.  
+![Receive Funds](img/ASGARDEX_Receive_Funds.png)  
+
+#### Sending  
+
+Under the **WALLET** tab, choose **ASSETS** and select the appropriate row corresponding to THORCHAIN Ledger account.  
+![Send Button](img/ASGARDEX_Send_Deposit.png)  
+Choose **SEND** to send RUNE to another address. Choose **DEPOSIT** for internal THORChain transactions such as BOND for node administration.  
+![Send](img/ASGARDEX_Send.png)  
+Enter recipient address which should begin with `thor`. Amount in RUNE. The `MEMO` field is optional.  
+After pressing **SEND**, follow the prompts on your Ledger device to **verify** the transaction by pressing **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
+
 
 ### Support
 
