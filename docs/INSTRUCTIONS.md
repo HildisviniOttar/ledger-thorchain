@@ -62,6 +62,7 @@ Checking balance can be accomplished via the **Wallet** button:
 You can copy your address using the buttons in the Balance area, including displaying QR code.  
 For maximum safety, you should also verify your receive address on your ledger device using the **Verify Address** button as pictured:  
 ![Verify Address](img/THORSwap_VerifyAddress.png)  
+![Verify on Ledger](img/Ledger_VerifyAddress.png)  
 
 #### Sending
 
@@ -85,29 +86,37 @@ After pressing **SWAP**, follow the prompts on your Ledger device. Review the tr
 - On your computer, open the ASGARDEX app.  
 - If you haven't already setup a software wallet on first run, follow the prompts to do that first.  
 - Click on **WALLET** then **SETTINGS** and **ADD LEDGER**  
-![Add Ledger](img/ASGARDEX_Add_Ledger.png)  
+<kbd>![Add Ledger](img/ASGARDEX_Add_Ledger.png)</kbd>  
 - If you see an error such as below, your Ledger device may be locked or not have the THORChain app open. Troubleshoot and try again.  
-![Ledger Error](img/ASGARDEX_Add_Address_Error.png)  
+<kbd>![Ledger Error](img/ASGARDEX_Add_Address_Error.png)</kbd>  
 - After successfully adding the Ledger, it will appear below the software wallet account.  
-![Ledger Added](img/ASGARDEX_Address_Added.png)  
+<kbd>![Ledger Added](img/ASGARDEX_Address_Added.png)</kbd>  
+
+#### Verify Address
+
+For maximum security, you should verify the address on the Ledger device before receiving funds. This ensures ASGARDEX is displaying the correct address.  
+<kbd>![Verify Address Button](img/ASGARDEX_VerifyAddressButton.png)</kbd>  
+![Verify Address Display](img/ASGARDEX_VerifyAddress.png)  
+![Verify Address Ledger](img/Ledger_VerifyAddress.png)  
 
 #### Check Balance  
 
 Checking balance can be accomplished via the **WALLET** under the **ASSETS** tab:  
-![Wallet Assets](img/ASGARDEX_Balance.png)  
+<kbd>![Wallet Assets](img/ASGARDEX_Balance.png)</kbd>  
  
 
 #### Receive Funds  
 
 You can copy your address using the buttons in any part of the app that displays your Address, including the QR code button.  
-![Receive Funds](img/ASGARDEX_Receive_Funds.png)  
+For maximum security, ensure you have completed the "Verify Address" step above.  
+<kbd>![Receive Funds](img/ASGARDEX_Receive_Funds.png)</kbd>  
 
 #### Sending  
 
 Under the **WALLET** tab, choose **ASSETS** and select the appropriate row corresponding to THORCHAIN Ledger account.  
-![Send Button](img/ASGARDEX_Send_Deposit.png)  
+<kbd>![Send Button](img/ASGARDEX_Send_Deposit.png)</kbd>  
 Choose **SEND** to send RUNE to another address. Choose **DEPOSIT** for internal THORChain transactions such as BOND for node administration.  
-![Send](img/ASGARDEX_Send.png)  
+<kbd>![Send](img/ASGARDEX_Send.png)</kbd>  
 Enter recipient address which should begin with `thor`. Amount in RUNE. The `MEMO` field is optional.  
 After pressing **SEND**, follow the prompts on your Ledger device to **verify** the transaction by pressing **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
 
