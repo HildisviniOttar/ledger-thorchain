@@ -53,15 +53,18 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 #### Check Balance
 
-Checking balance can be accomplished via the **Wallet** button:  
-![Wallet Button](img/THORSwap_Balance1.png)  
-![Wallet Balance](img/THORSwap_Balance2.png)  
+Checking balance can be accomplished via the **Wallet** button, on the top right:  
+![Wallet Button](https://user-images.githubusercontent.com/9930965/183312576-d9c53416-21e9-454a-9d04-658749a9f9d7.png)
+
+![Wallet Balance](https://user-images.githubusercontent.com/9930965/183312610-ead35b77-ba3f-4d58-9c96-5c6fcd0131cd.png)
+
 
 #### Receive Funds
 
 You can copy your address using the buttons in the Balance area, including displaying QR code.  
-For maximum safety, you should also verify your receive address on your ledger device using the **Verify Address** button as pictured:  
-![Verify Address](img/THORSwap_VerifyAddress.png)  
+For maximum safety, you should also verify your receive address on your ledger device using the **LEDGER Connected** button as pictured:  
+![Verify Address](https://user-images.githubusercontent.com/9930965/183312528-d96993db-214b-4fa7-9024-767fb3c4642a.png)
+
 ![Verify on Ledger](img/Ledger_VerifyAddress.png)  
 
 #### Sending
