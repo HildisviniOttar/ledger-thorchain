@@ -43,12 +43,14 @@ The THORChain Ledger app uses HD path `m/44'/931'/0'/0/0`
 
 - Plug in your Ledger device, unlock it and open the THORChain app.  
 - On your computer, using a Chromium based browser (e.g. Brave or Chrome) load [https://app.thorswap.finance/](https://app.thorswap.finance/) and click **Connect**  
-![Connect Button](img/THORSwap_Connect1.png)  
+![Connect Button](https://user-images.githubusercontent.com/9930965/183312917-261173c2-6fe2-4a9a-9eb7-5967f74ae312.png)
+
 - Connect Chrome to Ledger:  
 ![Connect Ledger](img/THORSwap_Connect4.png)  
 - Follow the prompts:  
-![Prompt1](img/THORSwap_Connect2.png)  
-![Prompt2](img/THORSwap_Connect3.png)  
+![Prompt1](https://user-images.githubusercontent.com/9930965/183312749-15082700-9951-498e-aaff-de1550dd2dc6.png)
+![Prompt2](https://user-images.githubusercontent.com/9930965/183312782-f234e60c-bbfb-43d8-83ab-fff8b5b99431.png)
+
 **Troubleshooting** If you are having trouble connecting, try quitting other browsers or app sessions that may also be connected to the Ledger.  
 
 #### Check Balance
@@ -70,15 +72,19 @@ For maximum safety, you should also verify your receive address on your ledger d
 #### Sending
 
 Tap the send button on your balance to display the send sheet:  
-![Send Button](img/THORSwap_Send2.png)  
-![Send](img/THORSwap_Send.png)  
+![Send Button](https://user-images.githubusercontent.com/9930965/183312861-24591912-c5fd-44da-bbe8-3f94e3d1da6d.png)
+
+![Send](https://user-images.githubusercontent.com/9930965/183312871-0b4229a3-3428-4a41-92fa-6dbedbe5c3d9.png)
+
+
 Enter the amount (or use the slider), and recipient address which should begin with `thor`. The `memo` field is optional.  
 After pressing **SEND**, follow the prompts on your Ledger device to **verify** the transaction by pressing **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
 
 #### Swapping
 
 Choose **Swap** from the main menu. The Ledger address will appear as an option to swap *to/from*.  
-![Swap](img/THORSwap_Swap.png)  
+![Swap](https://user-images.githubusercontent.com/9930965/183312843-b2cd0844-a162-4e31-aa1d-a16d3b1f8de9.png)
+
 After pressing **SWAP**, follow the prompts on your Ledger device. Review the transaction including `memo` which should match your desired *SWAP* transaction details, then press **accept**. If the transaction displayed on the Ledger device does not match what you entered on the website, you should choose **reject** on device.  
 
 ## ASGARDEX Desktop Support
